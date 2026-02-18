@@ -1,0 +1,165 @@
+body {
+    margin: 0;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: #F5F1E8;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 960px;
+}
+
+.card {
+    flex: 1;
+    min-width: 0;
+    background-color: #FFF;
+    border-radius: 20px;
+    padding: 40px 40px 50px 40px;
+    box-shadow: 0 0 20px #00000033;
+    box-sizing: border-box;
+}
+
+.card h2 {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #43682D;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.field-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.field-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card input[type="text"],
+.card input[type="number"],
+.card select {
+    font-family: 'Tahoma', sans-serif;
+    font-size: 15px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #FFF;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card input:focus,
+.card select:focus {
+    border-color: #619146;
+    box-shadow: 0 0 5px #6EAD4966;
+}
+
+.btn-group {
+    margin-top: 10px;
+}
+
+.btn-group button {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #FFF;
+    background-color: #43682D;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-group button:hover {
+    background-color: #619146;
+}
+
+.btn-group button:active {
+    transform: scale(0.98);
+}
+
+.soa-placeholder {
+    text-align: center;
+    color: #888;
+    padding: 40px 10px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.result-box {
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1.9;
+    box-shadow: 0 4px 6px #0000001A;
+}
+
+.result-box p {
+    margin: 4px 0;
+}
+
+.result-box hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 15px 0;
+}
+
+.result-box .label {
+    font-family: 'Tahoma', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 145px;
+}
+
+.success-msg {
+    font-family: 'Tahoma', sans-serif;
+    font-size: 15px;
+    background-color: #D4EDDA;
+    color: #000;
+}
+
+.error-msg {
+    font-family: 'Tahoma', sans-serif;
+    font-size: 15px;
+    background-color: #A82323;
+    color: #FFF;
+}
+
+@media (max-width: 700px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card {
+        width: 100%;
+        padding: 30px 20px 40px 20px;
+    }
+}
