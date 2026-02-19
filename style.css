@@ -1,3 +1,4 @@
+/* Base body styling and centering */
 body {
     margin: 0;
     padding: 30px 20px;
@@ -11,6 +12,7 @@ body {
     align-items: center;
 }
 
+/* Layout wrapper to position cards side-by-side */
 .wrapper {
     display: flex;
     flex-direction: row;
@@ -21,6 +23,7 @@ body {
     max-width: 960px;
 }
 
+/* Card container styling for both form and results */
 .card {
     flex: 1;
     min-width: 0;
@@ -41,6 +44,7 @@ body {
     margin-bottom: 30px;
 }
 
+/* Form input groupings and labels */
 .field-group {
     text-align: left;
     margin-bottom: 20px;
@@ -53,10 +57,11 @@ body {
     color: #333;
 }
 
+/* Form inputs and dropdown styling */
 .card input[type="text"],
 .card input[type="number"],
 .card select {
-    font-family: 'Tahoma', sans-serif;
+    font-family: inherit;
     font-size: 15px;
     width: 100%;
     padding: 12px;
@@ -74,6 +79,7 @@ body {
     box-shadow: 0 0 5px #6EAD4966;
 }
 
+/* Submit button styling and hover effects */
 .btn-group {
     margin-top: 10px;
 }
@@ -100,6 +106,7 @@ body {
     transform: scale(0.98);
 }
 
+/* Result area placeholder text */
 .soa-placeholder {
     text-align: center;
     color: #888;
@@ -108,6 +115,7 @@ body {
     line-height: 1.8;
 }
 
+/* Display boxes for error and success messages */
 .result-box {
     padding: 15px;
     border-radius: 10px;
@@ -127,27 +135,22 @@ body {
 }
 
 .result-box .label {
-    font-family: 'Tahoma', sans-serif;
-    font-size: 15px;
     font-weight: bold;
     display: inline-block;
     min-width: 145px;
 }
 
 .success-msg {
-    font-family: 'Tahoma', sans-serif;
-    font-size: 15px;
     background-color: #D4EDDA;
     color: #000;
 }
 
 .error-msg {
-    font-family: 'Tahoma', sans-serif;
-    font-size: 15px;
     background-color: #A82323;
     color: #FFF;
 }
 
+/* Mobile responsiveness */
 @media (max-width: 700px) {
     body {
         align-items: flex-start;
