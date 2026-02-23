@@ -1,11 +1,10 @@
 <?php
-// Start session to temporarily store form data and results
 session_start();
 
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Retrieve and sanitize user inputs
+    // Retrieve and validate user inputs
     $name = htmlspecialchars(trim($_POST['name']));
     $previous = floatval($_POST['previous']);
     $current = floatval($_POST['current']);
@@ -19,29 +18,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'mySelect' => $customerTypeVal,
     ];
 
-    // Validate: Ensure a customer type is selected
+    // Ensure a customer type is selected
     if ($customerTypeVal === "0") {
         $_SESSION['result'] = [
             'type' => 'error',
             'message' => "<strong>Error:</strong> Please select a valid customer type."
         ];
-        
-    // Validate: Ensure current reading is logical (not less than previous)
+
+        // Ensure current reading not less than the previous reading
     } elseif ($current < $previous) {
         $_SESSION['result'] = [
             'type' => 'error',
             'message' => "<strong>Invalid Reading:</strong> Current reading cannot be lower than previous."
         ];
-        
-    // Process calculation if validation passes
-    } else {
-        // Calculate total electricity usage
-        $usage = $current - $previous;
 
-        // Determine the rate per kWh based on usage amount
+        // If validation passes, calculates the total usage and rate per kWh
+    } else {
+        $usage = $current - $previous;
         $rate = ($usage <= 200) ? 10.00 : 15.00;
 
-        // Apply specific surcharge and label based on customer type
+        // Apply surcharge and label based on customer type
         if ($customerTypeVal === "2") {
             $customerTypeName = "Commercial (+ &#8369;500)";
             $surcharge = 500.00;
@@ -54,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $baseCost = $usage * $rate;
         $totalBill = $baseCost + $surcharge;
 
-        // Store the successful calculation details in session
+        // Store the calculation details in session
         $_SESSION['result'] = [
             'type' => 'success',
             'name' => $name,
@@ -74,18 +70,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $result = $_SESSION['result'] ?? null;
 $inputs = $_SESSION['inputs'] ?? ['name' => '', 'previous' => '', 'current' => '', 'mySelect' => '0'];
 
-// Clear session data to reset the state for the next interaction
-unset($_SESSION['result'], $_SESSION['inputs']);
+// Clear the result message so alerts don't persist on a browser refresh
+unset($_SESSION['result']);
+
+// Only clear the form inputs from the session if the last calculation was successful.
+// This ensures errors or incomplete data remain in the text fields even if the page is refreshed.
+if ($result !== null && $result['type'] === 'success') {
+    unset($_SESSION['inputs']);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco-Friendly Electric Bill App</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="wrapper">
@@ -152,4 +156,5 @@ unset($_SESSION['result'], $_SESSION['inputs']);
     </div>
 
 </body>
+
 </html>
