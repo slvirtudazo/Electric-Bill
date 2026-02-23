@@ -70,11 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $result = $_SESSION['result'] ?? null;
 $inputs = $_SESSION['inputs'] ?? ['name' => '', 'previous' => '', 'current' => '', 'mySelect' => '0'];
 
-// Clear the result message so alerts don't persist on a browser refresh
 unset($_SESSION['result']);
 
-// Only clear the form inputs from the session if the last calculation was successful.
-// This ensures errors or incomplete data remain in the text fields even if the page is refreshed.
+// Only clear the form inputs from the session if the last calculation was successful
 if ($result !== null && $result['type'] === 'success') {
     unset($_SESSION['inputs']);
 }
